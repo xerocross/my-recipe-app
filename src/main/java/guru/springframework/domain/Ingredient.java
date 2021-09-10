@@ -11,6 +11,9 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
+    @OneToOne(fetch = FetchType.EAGER) // no cascading
+    private UnitOfMeasure unitOfMeasure;
+
     @ManyToOne // no cascade
     private Recipe recipe;
 
