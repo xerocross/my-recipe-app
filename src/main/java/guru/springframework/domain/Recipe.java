@@ -1,6 +1,7 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -21,6 +22,9 @@ public class Recipe {
     @Lob
     private Byte[] image;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="recipe")
+    private Set<Ingredient> ingredients;
+
     // recipe is the owner of Notes
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
@@ -31,6 +35,14 @@ public class Recipe {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public String getDescription() {
